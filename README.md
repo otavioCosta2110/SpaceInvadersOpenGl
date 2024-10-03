@@ -1,3 +1,4 @@
+# Space Invaders OpenGL
 ![image](https://github.com/user-attachments/assets/ea1c76b9-813d-4f7a-a65a-95c5d3a1031f)
 ## This is an extremely simple clone of the original space invaders, made using OpenGl.
 
