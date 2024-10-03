@@ -11,13 +11,13 @@ void processInput(GLFWwindow* window) {
     glfwSetWindowShouldClose(window, true);
   }
 
-  if (trianguloX > -(1.0f + trianguloTamX)){
+  if (trianguloX > -(1.0f - trianguloTamX)){
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
       trianguloX -= velocidade;
     }
   }
 
-  if(trianguloX < 1.0f + trianguloTamX ){
+  if(trianguloX < 1.0f - trianguloTamX ){
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
       trianguloX += velocidade;
     }

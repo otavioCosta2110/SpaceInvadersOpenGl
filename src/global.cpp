@@ -29,6 +29,8 @@ float balaTamX = 0.05f;
 float balaY = -1;
 float balaX = 0;
 bool balaAtiva = false;
+float lastShotTime = 0.0;
+float bulletCooldown = 0.7;
 
 float quadradoTamY = 0.05f;
 float quadradoTamX = 0.05f;
@@ -36,11 +38,8 @@ float quadradoTamX = 0.05f;
 float velocidade = 0.02f;
 float velocidadeBala = 0.03f;
 
-float limiteInvasores = -0.6f;
+float limiteInvasores = -0.75f;
 bool gameOver = false;
-
-double lastShotTime = 0.0;
-double bulletCooldown = 0.6;
                           
 void checaColisao() {
     for (int i = 0; i < numInvadersTotal; ++i) {
@@ -57,7 +56,7 @@ void checaColisao() {
 }
 
 void atiraBala() {
-    double currentTime = glfwGetTime();
+    float currentTime = glfwGetTime();
     
     if (!balaAtiva && (currentTime - lastShotTime >= bulletCooldown)) {
         balaAtiva = true;
@@ -68,7 +67,7 @@ void atiraBala() {
 }
 
 void desenhaBala() {
-    double currentTime = glfwGetTime();
+    float currentTime = glfwGetTime();
     if (currentTime - lastShotTime >= bulletCooldown) {
         balaAtiva = false;
     }
@@ -132,6 +131,6 @@ void moveInvasores() {
 }
 
 bool isBalaCooldown(){
-    double currentTime = glfwGetTime();
+    float currentTime = glfwGetTime();
     return (currentTime - lastShotTime >= bulletCooldown);
 }

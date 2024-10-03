@@ -10,14 +10,15 @@ void desenhaTriangulo();
 void desenhaQuadrado(float initialPos);
 void desenhaInvasores();
 void initializeInvaders();
+void initializeStars();
+void desenhaEstrelas();
+void desenhaWin();
 
 const int numStars = 100;
 
 float starX[numStars];
 float starY[numStars];
 
-void initializeStars();
-void desenhaEstrelas();
 
 int main()
 {	
@@ -27,7 +28,7 @@ int main()
     return 1;
   }
 
-  GLFWwindow* Window = glfwCreateWindow(Width, Height, "ProgramaOpengl1", nullptr, nullptr);
+  GLFWwindow* Window = glfwCreateWindow(Width, Height, "Space Invaders", nullptr, nullptr);
 
   if (!Window)
   {
@@ -46,7 +47,6 @@ int main()
     return 1;
   }
 
-  // Ler a versão do OpenGL para imprimir na tela
   GLint GLMajorVersion = 0;
   GLint GLMinorVersion = 0;
   glGetIntegerv(GL_MAJOR_VERSION, &GLMajorVersion);
@@ -70,6 +70,9 @@ int main()
 
     processInput(Window);
 
+    if ( numInvadersAlive == 0) {
+      desenhaWin();
+    }
     desenhaEstrelas();
     desenhaTriangulo();
     desenhaBala();
@@ -132,11 +135,31 @@ void desenhaInvasores() {
         glTranslatef(invaderX[i], invaderY[i], 0.0f);
 
         glBegin(GL_QUADS);
-        glColor3f(0.0f, 0.3f, 0.0f);
+        glColor3f(1.0f, 1.0f, 1.0f);
         glVertex2f(-0.04f, 0.04f);
         glVertex2f(0.04f, 0.04f);
         glVertex2f(0.04f, -0.04f);
         glVertex2f(-0.04f, -0.04f);
+
+        glVertex2f(-0.06f, 0.02f);
+        glVertex2f(-0.04f, 0.02f);
+        glVertex2f(-0.04f, -0.02f);
+        glVertex2f(-0.06f, -0.02f);
+
+        glVertex2f(0.06f, 0.02f);
+        glVertex2f(0.04f, 0.02f);
+        glVertex2f(0.04f, -0.02f);
+        glVertex2f(0.06f, -0.02f);
+
+        glVertex2f(-0.03f, -0.06f);
+        glVertex2f(-0.01f, -0.06f);
+        glVertex2f(-0.01f, -0.04f);
+        glVertex2f(-0.03f, -0.04f);
+
+        glVertex2f(0.03f, -0.06f);
+        glVertex2f(0.01f, -0.06f);
+        glVertex2f(0.01f, -0.04f);
+        glVertex2f(0.03f, -0.04f);
         glEnd();
 
         glPopMatrix();
@@ -160,3 +183,51 @@ void desenhaEstrelas() {
 
     glEnd();
 }
+
+// 💀💀💀
+void desenhaWin() {
+    glPushMatrix(); 
+    
+    glBegin(GL_LINES);
+    
+    glVertex2f(-0.05f, 0.05f);  
+    glVertex2f(-0.03f, -0.05f); 
+
+    glVertex2f(-0.03f, -0.05f);
+    glVertex2f(0.0f, 0.02f);
+
+    glVertex2f(0.0f, 0.02f);
+    glVertex2f(0.03f, -0.05f);
+
+    glVertex2f(0.03f, -0.05f);
+    glVertex2f(0.05f, 0.05f);
+    
+    glEnd();
+
+    glTranslatef(0.2f, 0.0f, 0.0f);
+
+    glBegin(GL_LINES);
+
+    glVertex2f(-0.01f, 0.05f);  
+    glVertex2f(-0.01f, -0.05f);
+
+    glEnd();
+
+    glTranslatef(0.2f, 0.0f, 0.0f);
+
+    glBegin(GL_LINES);
+    
+    glVertex2f(-0.05f, 0.05f);  
+    glVertex2f(-0.05f, -0.05f); 
+
+    glVertex2f(-0.05f, 0.05f);  
+    glVertex2f(0.05f, -0.05f); 
+
+    glVertex2f(0.05f, 0.05f);  
+    glVertex2f(0.05f, -0.05f);
+
+    glEnd();
+
+    glPopMatrix(); 
+}
+
