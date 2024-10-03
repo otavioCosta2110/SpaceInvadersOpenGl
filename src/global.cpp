@@ -40,6 +40,12 @@ float velocidadeBala = 0.03f;
 
 float limiteInvasores = -0.75f;
 bool gameOver = false;
+
+const int numStars = 100;
+
+float starX[numStars];
+float starY[numStars];
+
                           
 void checaColisao() {
     for (int i = 0; i < numInvadersTotal; ++i) {
